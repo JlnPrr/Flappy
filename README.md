@@ -1,4 +1,4 @@
-# Création d’un petit jeu flappy bird à l’aide de Python et du module Pygame.
+# Création d’un petit jeu flappy bird avec <br/>Python et le module Pygame.
 <br/>
 </>
 
