@@ -10,9 +10,11 @@ def draw_floor():
 
 
 def create_new_pipe():
-    random_height = random.choice(pipe_height)                                                  # choice = renvoie un élément sélectionné au hasard dans la séquence spécifiée.
+    # renvoie un élément sélectionné au hasard dans la séquence spécifiée
+    random_height = random.choice(pipe_height)                                               
     bottom_pipe = pipe_surface.get_rect(midtop=(360, random_height))
-    top_pipe = pipe_surface.get_rect(midbottom=(360, random_height - 160))                   # espace entre les pipes
+    # espace entre les pipes
+    top_pipe = pipe_surface.get_rect(midbottom=(360, random_height - 160))                   
     return bottom_pipe, top_pipe
 
 
@@ -22,7 +24,7 @@ def move_pipe(pipes):
         pipe.centerx -= 2
 
     visible_pipes = [pipe for pipe in pipes if pipe.right >= 0]
-    if len(visible_pipes) < len(pipes):                                         # si on a supprimer des pipes de pipe_list
+    if len(visible_pipes) < len(pipes):                                         
         can_update_score = True
 
     return visible_pipes
@@ -33,7 +35,8 @@ def draw_pipe(pipes):
         if pipe_rect.bottom >= SCREEN_HEIGHT:
             screen.blit(pipe_surface, pipe_rect)
         else:
-            flipped_pipe = pygame.transform.flip(pipe_surface, False, True)                     # False, True (flip sur x, flip sur y)
+            # False, True (flip sur x, flip sur y)
+            flipped_pipe = pygame.transform.flip(pipe_surface, False, True)                    
             screen.blit(flipped_pipe, pipe_rect)
 
 
@@ -69,7 +72,7 @@ def display_score():
 
 
 def update_score():
-    global score, can_update_score, high_score                                              # pr utiliser la variable ds la function
+    global score, can_update_score, high_score                                              
     if len(pipe_list) > 0:
         for pipe in pipe_list:
             if pipe.centerx < bird_rect.centerx and can_update_score:
@@ -78,7 +81,7 @@ def update_score():
                 game_point_sound.set_volume(0.3)
                 if score > high_score:
                     high_score = score
-                    with open('data.txt', mode='w') as file:                                                        # w = écriture
+                    with open('data.txt', mode='w') as file:                                                        
                         file.write(str(high_score))
 
                 can_update_score = False
@@ -92,7 +95,7 @@ def update_bird_image():
         bird_index = 0
 
     bird_surface = bird_images[bird_index]
-    y = bird_rect.centery                                                               # qd on change l'image il faut que le rect soit à la position de l'img d'avant
+    y = bird_rect.centery                                                               
     bird_rect = bird_surface.get_rect(center=(100, y))
 
 def rotate_bird(surface):
@@ -112,7 +115,8 @@ pipe_height = [200, 300, 400]
 is_playing = False
 score = 0
 high_score = 0
-with open('data.txt') as file:                                                      # premet de fermer automatiquement le fichier qd on ferme le jeux (pas besoin de faire close ou autre)
+# ferme automatiquement le fichier qd on ferme le jeux
+with open('data.txt') as file:                                                      
     saved_score = file.read()
     high_score = int(saved_score)
 
@@ -123,7 +127,7 @@ game_point_sound = pygame.mixer.Sound('sound/sfx_point.wav')
 game_collision_sound = pygame.mixer.Sound('sound/sfx_hit.wav')
 
 # SURFACES
-bg_surface = pygame.image.load('assets/background-day.png').convert()              # convert mets le fichier ds un format qui est plus façile à gérer pr Pygame
+bg_surface = pygame.image.load('assets/background-day.png').convert()              
 floor_surface = pygame.image.load('assets/base.png').convert()
 
 bird_mid_surface = pygame.image.load('assets/yellowbird-midflap.png').convert()
@@ -135,12 +139,13 @@ bird_surface = bird_images[bird_index]
 bird_rect = bird_surface.get_rect(center=(100, 225))
 
 pipe_surface = pygame.image.load('assets/pipe-green.png').convert()
-game_over_surface = pygame.image.load('assets/message.png').convert_alpha()             # pr elever les couleurs par défaults que pygame va mettre pr combler
+game_over_surface = pygame.image.load('assets/message.png').convert_alpha()             
 game_over_rect = game_over_surface.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 pipe_list = []
 CREATEPIP = pygame.USEREVENT
-pygame.time.set_timer(CREATEPIP, 1300)                                             # on l'enclenche à 1300 millisecondes
-UPDATEBIRD = pygame.USEREVENT + 1                                                  # + 1 à chaque nv userevent qu'on créer
+# s'enclenche à 1300 millisecondes
+pygame.time.set_timer(CREATEPIP, 1300)                                             
+UPDATEBIRD = pygame.USEREVENT + 1                                                  
 pygame.time.set_timer(UPDATEBIRD, 200)
 
 pygame.display.set_caption("Bird")
@@ -169,7 +174,7 @@ while game_on:
                 is_playing = True
 
         if event.type == CREATEPIP:
-            pipe_list.extend(create_new_pipe())                                    # extend permet de prendre une list et de l'ajouter à une autre list
+            pipe_list.extend(create_new_pipe())                                    
 
         if event.type == UPDATEBIRD:
             update_bird_image()
