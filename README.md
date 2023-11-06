@@ -18,6 +18,8 @@
 
 - Intercepter et gérer les actions de l'utilisateur (touches du clavier, actions sur la souris)<br>
 <br/>
+Barre espace pour battre des ailes
+<br/>
 <br/>
 
 
