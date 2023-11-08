@@ -23,8 +23,12 @@ Barre espace pour battre des ailes
 <br/>
 
 
+
 <!-- {:style="text-align:center;"} -->
-![img_flappy](https://github.com/JlnPrr/Flappy/assets/83329578/8f1d8573-44e9-4a83-8177-215b1e536522)           ![Fichier 3](https://github.com/JlnPrr/Flappy/assets/83329578/5e4957c7-b363-40a2-869e-2c8e3693cab4)
+
+![img_flappy](https://github.com/JlnPrr/Flappy/assets/83329578/b1e836b4-42dc-4df8-9f45-966de4efdf93)   ![Fichier 3](https://github.com/JlnPrr/Flappy/assets/83329578/804637e9-4d3b-4d21-8991-76086f1defaf)
+
+
 <br/>
 
 
